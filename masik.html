@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Packet Tracer Parancsok</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="text-box">
+
+<h2>Packet Tracer konfigurációs parancsok</h2>
+
+<pre>
+
+Privilegizált jelszó beállítás
+enable password jelszó
+
+Privilegizált titkosított jelszó beállítás
+enable secret 12345
+
+Konzoljelszó beállítása
+line console 0
+password ConPass123
+login
+
+Virtuális terminálok jelszavainak beállítása
+line vty 0 15
+password jelszo
+login
+
+Jelszó titkosítás engedélyezése (minden jelszót titkosít)
+service password-encryption
+
+
+Jelszavak beállítása
+enable password 654321
+enable secret 123456
+line console 0
+password 654321
+login
+exit
+line vty 0 15
+password 654321
+login
+exit
+service password-encryption
+
+
+Bejelentkezési üzenet megadása
+banner login # Szöveg! #
+
+
+Virtuális interface címzése Sw
+interface vlan1
+ip address 192.168.12.50 255.255.255.0
+no shutdown
+
+
+Alapértelmezett átjáró megadása
+Switch(config)#ip default-gateway 192.168.11.33
+
+
+Router interface IP konfiguráció
+Router(config)#int gi0/0
+Router(config-if)#ip address 192.168.11.33 255.255.255.224
+Router(config-if)#ipv6 enable
+Router(config-if)#ipv6 address 2001:db8:acad:1::1/64
+Router(config-if)#ipv6 address fe80::1 link-local
+Router(config-if)#no sh
+
+
+Forgalomirányítón engedélyezzük az IPv6-os forgalomirányítást
+Router(config)#ipv6 unicast-routing
+
+
+Helyi felhasználó létrehozása (jelszóval)
+Sw(config)#username admin password AdPass123
+
+
+Virtuális vonalak védelme (helyi felhasználóval)
+Sw(config)#line vty 0 15
+Sw(config-line)#login local
+
+
+Interface-hez megjegyzés hozzáadása
+R(config)#int gi0/0
+R(config-if)#description Office_LAN
+
+
+SSH engedélyezése
+Sw(config)#ip domain-name proba.hu
+Sw(config)#crypto key generate rsa
+How many bits in the modulus [512]: 1024
+Sw(config)#line vty 0 15
+Sw(config-line)#transport input ssh
+
+</pre>
+
+<a href="index.html">⬅ Vissza a főoldalra</a>
+
+</div>
+
+</body>
+</html>
